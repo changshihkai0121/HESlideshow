@@ -19,8 +19,26 @@ var HESlideshow = new(function() {
             console.log('please key-in true element');
         } else {
             imgContent.setAttribute('style', setContentWidth(imgBlock));
+            basicAnimate();
         };
+
+        function basicAnimate() {
+            imgContent.addEventListener('mouseover', function() {
+                
+                // nextBtn.style.opacity = '0.8';
+                // prevBtn.style.opacity = '0.8';
+            });
+            imgContent.addEventListener('mouseout', function() {
+                
+                // nextBtn.style.opacity = '0';
+                // prevBtn.style.opacity = '0';
+            });
+        }
     };
+
+    function fadeIn(dom, Num, speed) {
+    }
+
 
     function setContentWidth(Detail) {
         //content width count
@@ -42,7 +60,9 @@ var HESlideshow = new(function() {
         return [widthDom, heightDom];
     }
 
-    function animate() {}
+    function animate() {
+
+    }
 
 
     // /* -- Auto Slide show -- */

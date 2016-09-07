@@ -33,11 +33,13 @@ html {
   -webkit-transform: rotate(-180deg);
   /* Chrome, Safari, Opera */
   transform: rotate(-180deg);
-  right: 0;
+  right: 20px;
+  opacity: 0;
 }
 
 .slideContainer .prevBtn {
-  left: 0;
+  left: 20px;
+  opacity: 0;
 }
 
 @media screen and (min-width: 544px) {
