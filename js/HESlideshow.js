@@ -4,41 +4,41 @@ How Easy! Slideshow.
 ==========================
 */
 var HESlideshow = new(function() {
-    var nextBtn = document.getElementById('nextBtn'),
-        prevBtn = document.getElementById('prevBtn');
 
     this.basicSetting = function(config) {
-        settingDOM(config);
+        Setting(config);
     };
-    var settingDOM = function(config) {
-        //basic dom setting
+    var Setting = function(config) {
+        //basic data get
         var slideContainer = document.querySelector(config.slideContainer),
             imgContent = document.querySelector(config.imgContent),
-            imgBlock = document.querySelectorAll(config.imgBlock);
+            imgBlock = document.querySelectorAll(config.imgBlock),
+            effect = (config.effect == undefined) ? 'basic' : config.effect,
+            effectSpeed = (config.effectSpeed == undefined) ? 2000 : config.effectSpeed,
+            auto = (config.auto == undefined) ? true : config.auto,
+            autoSpeed = (config.autoSpeed == undefined) ? 2000 : config.autoSpeed;
+        // put Dom to setting
+        settingDOM(slideContainer, imgContent, imgBlock);
+        var effectSuit = [effect, effectSpeed];
+        HESlideEffect.putEffect(btnReaction(slideContainer), effectSuit);
+    }
+
+    var settingDOM = function(slideContainer, imgContent, imgBlock) {
+        //basic dom setting
         if (slideContainer.length <= 0 || imgContent.length <= 0 || imgBlock.length <= 0) {
             console.log('please key-in true element');
         } else {
+            // set basic image width.
             imgContent.setAttribute('style', setContentWidth(imgBlock));
-            basicAnimate();
         };
-
-        function basicAnimate() {
-            imgContent.addEventListener('mouseover', function() {
-                
-                // nextBtn.style.opacity = '0.8';
-                // prevBtn.style.opacity = '0.8';
-            });
-            imgContent.addEventListener('mouseout', function() {
-                
-                // nextBtn.style.opacity = '0';
-                // prevBtn.style.opacity = '0';
-            });
-        }
     };
 
-    function fadeIn(dom, Num, speed) {
+    function btnReaction(slideBlock) {
+        //provide Btn dom
+        var nextBtn = document.getElementById('nextBtn'),
+            prevBtn = document.getElementById('prevBtn');
+        return [slideBlock, nextBtn, prevBtn];
     }
-
 
     function setContentWidth(Detail) {
         //content width count
@@ -58,10 +58,6 @@ var HESlideshow = new(function() {
         widthDom += parseInt(defaultStyle.marginLeft) + parseInt(defaultStyle.marginRight);
         heightDom += parseInt(defaultStyle.marginTop) + parseInt(defaultStyle.marginBottom);
         return [widthDom, heightDom];
-    }
-
-    function animate() {
-
     }
 
 
@@ -95,8 +91,30 @@ var HESlideshow = new(function() {
 
 })();
 
+// all effect
+var HESlideEffect = new(function() {
+    this.putEffect = function(effectDom, effectSuit) {
+        if (Array.isArray(effectDom) && Array.isArray(effectSuit)) {
+            //basic effect is fadeIn & fadeout
+            setupEffect(effectDom, effectSuit);
+        }
+    };
+
+    function setupEffect(dom, setting) {
+        var slideContainer = dom[0],
+            nextBtn = dom[1],
+            prevBtn = dom[2];
+        var effectName = setting[0],
+            effectSpeed = setting[1];
+        slideContainer.addEventListener('mouseenter', function(){})
+        slideContainer.addEventListener('mouseleave', function(){})
+    }
+
+})();
+
 HESlideshow.basicSetting({
     slideContainer: '.slideContainer',
     imgContent: '.imgTotal',
-    imgBlock: '.imgBlock'
+    imgBlock: '.imgBlock',
+    effect: 'basic'
 });
