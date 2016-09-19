@@ -106,7 +106,10 @@ var HESlideEffect = new(function() {
             prevBtn = dom[2];
         var effectName = setting[0],
             effectSpeed = setting[1];
-        slideContainer.addEventListener('mouseenter', function(){})
+        slideContainer.addEventListener('mouseenter', function(){
+            console.log(this);
+            // next.fadeIn;
+        })
         slideContainer.addEventListener('mouseleave', function(){})
     }
 
